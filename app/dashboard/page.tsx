@@ -2,13 +2,13 @@
 
 import { ordenesDemo } from "../data";
 import { useState } from "react";
+import Image from "next/image";
 import {
   CheckCircle,
   Container,
   User,
   MapPin,
   Calendar,
-  Building2,
   ChevronDown,
   ChevronUp,
   Truck,
@@ -42,8 +42,14 @@ export default function Dashboard() {
       {/* Header / Navbar */}
       <header className="bg-slate-900 border-b border-slate-800 px-4 sm:px-6 lg:px-8 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Building2 className="w-6 h-6 text-blue-500" />
+          <div className="flex items-center gap-3">
+            <Image
+              src="/nexegde-imag.png"
+              alt="Nexedge Logo"
+              width={40}
+              height={40}
+              className="object-contain"
+            />
             <h1 className="text-xl font-bold text-white">S&S PORTAL</h1>
           </div>
           <div className="flex items-center gap-3">
@@ -85,7 +91,9 @@ export default function Dashboard() {
                         {orden.id}
                       </span>
                       <div className="flex items-center gap-3 mt-1">
-                        <span className="text-sm text-slate-400">{orden.cliente}</span>
+                        <span className="text-sm text-slate-400">
+                          {orden.cliente}
+                        </span>
                         <span className="text-xs text-slate-500">•</span>
                         <div className="flex items-center gap-1 text-xs text-slate-500">
                           <Calendar className="w-3 h-3" />
@@ -123,7 +131,8 @@ export default function Dashboard() {
                       <div className="overflow-x-auto pb-4 -mx-4 sm:mx-0 px-4 sm:px-0 scroll-smooth">
                         <div className="relative flex items-start gap-4 sm:gap-6 min-w-max">
                           {orden.pasosOrden.map((paso, index) => {
-                            const isLast = index === orden.pasosOrden.length - 1;
+                            const isLast =
+                              index === orden.pasosOrden.length - 1;
                             const isCurrent = paso.actual;
                             const isCompleted = paso.completado;
 
@@ -154,7 +163,9 @@ export default function Dashboard() {
                                   {!isLast && (
                                     <div
                                       className={`absolute top-6 left-full w-4 sm:w-6 h-0.5 ${
-                                        isCompleted ? "bg-blue-600" : "bg-slate-700"
+                                        isCompleted
+                                          ? "bg-blue-600"
+                                          : "bg-slate-700"
                                       }`}
                                     />
                                   )}
@@ -183,7 +194,9 @@ export default function Dashboard() {
                       {/* Barra de Progreso General */}
                       <div className="mt-6">
                         <div className="flex items-center justify-between mb-2">
-                          <span className="text-sm text-slate-400">Progreso General</span>
+                          <span className="text-sm text-slate-400">
+                            Progreso General
+                          </span>
                           <span className="text-sm font-semibold text-blue-400">
                             {progreso}%
                           </span>
@@ -232,18 +245,23 @@ export default function Dashboard() {
 
                             {/* Datos Clave */}
                             <div className="space-y-2 mb-6">
-                              {contenedor.placa && contenedor.placa !== "Pendiente" && (
-                                <div className="flex items-center gap-2 text-sm">
-                                  <Truck className="w-4 h-4 text-slate-500" />
-                                  <span className="text-slate-300">
-                                    <span className="text-slate-500">Placa:</span>{" "}
-                                    {contenedor.placa}
-                                  </span>
-                                </div>
-                              )}
+                              {contenedor.placa &&
+                                contenedor.placa !== "Pendiente" && (
+                                  <div className="flex items-center gap-2 text-sm">
+                                    <Truck className="w-4 h-4 text-slate-500" />
+                                    <span className="text-slate-300">
+                                      <span className="text-slate-500">
+                                        Placa:
+                                      </span>{" "}
+                                      {contenedor.placa}
+                                    </span>
+                                  </div>
+                                )}
                               <div className="flex items-start gap-2 text-sm">
                                 <MapPin className="w-4 h-4 text-slate-500 mt-0.5 flex-shrink-0" />
-                                <span className="text-slate-300">{contenedor.ubicacion}</span>
+                                <span className="text-slate-300">
+                                  {contenedor.ubicacion}
+                                </span>
                               </div>
                             </div>
 
@@ -254,11 +272,15 @@ export default function Dashboard() {
                               </p>
                               <div className="space-y-2">
                                 {contenedor.timeline.map((item, idx) => {
-                                  const isLast = idx === contenedor.timeline.length - 1;
+                                  const isLast =
+                                    idx === contenedor.timeline.length - 1;
                                   const isCurrent = item.actual;
 
                                   return (
-                                    <div key={idx} className="flex items-start gap-3">
+                                    <div
+                                      key={idx}
+                                      className="flex items-start gap-3"
+                                    >
                                       {/* Línea Vertical */}
                                       <div className="flex flex-col items-center">
                                         <div
@@ -273,7 +295,9 @@ export default function Dashboard() {
                                         {!isLast && (
                                           <div
                                             className={`w-0.5 h-6 mt-1 ${
-                                              item.hecho ? "bg-blue-500" : "bg-slate-700"
+                                              item.hecho
+                                                ? "bg-blue-500"
+                                                : "bg-slate-700"
                                             }`}
                                           />
                                         )}

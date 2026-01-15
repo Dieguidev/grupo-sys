@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
   TrendingUp,
   Package,
@@ -22,8 +23,24 @@ import {
 export default function Home() {
   return (
     <div className="min-h-screen bg-slate-950 text-white font-sans">
+      {/* Header / Navbar */}
+      <header className="bg-slate-900/50 backdrop-blur-sm border-b border-slate-800/50 px-4 sm:px-6 lg:px-8 py-4 fixed top-0 left-0 right-0 z-50">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Image
+              src="/nexegde-imag.png"
+              alt="Nexedge Logo"
+              width={40}
+              height={40}
+              className="object-contain"
+            />
+            <span className="text-lg font-bold text-white">Nexedge</span>
+          </div>
+        </div>
+      </header>
+
       {/* SECCIÓN HERO (Slide 1) */}
-      <section className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <section className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_70%)]"></div>
 
@@ -48,6 +65,21 @@ export default function Home() {
             VER DEMOSTRACIÓN EN VIVO
             <ArrowRight className="w-5 h-5" />
           </Link>
+          
+          {/* Texto y QR para móvil */}
+          <div className="mt-8 flex flex-col items-center gap-4">
+            <p className="text-base sm:text-lg text-slate-400">¿Prefieres verlo en tu celular?</p>
+            <div className="border-4 border-white rounded-xl p-4 shadow-2xl">
+              <Image
+                src="/qr-demo.png"
+                alt="Código QR para acceder en móvil"
+                width={500}
+                height={500}
+                className="rounded-lg"
+                priority
+              />
+            </div>
+          </div>
         </div>
       </section>
 
